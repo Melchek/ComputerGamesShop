@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using ComputerGamesShop.Dal;
 
 namespace ComputerGamesShop
 {
@@ -24,9 +22,6 @@ namespace ComputerGamesShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            services.AddDbContext<ComputerGamesShopContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ComputerGamesShopContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

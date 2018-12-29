@@ -2,12 +2,12 @@
 
 namespace ComputerGamesShop.Models
 {
-    public class Customer : User
+    public class Manager : User
     {
         #region Navigate Properties
 
-        public virtual ICollection<Order> Orders { get; set; }
-        
+        public virtual ICollection<Store> Stores { get; set; }
+
         #endregion
     }
 }

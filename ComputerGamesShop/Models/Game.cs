@@ -7,20 +7,6 @@ using System.Threading.Tasks;
 
 namespace ComputerGamesShop.Models
 {
-    public enum Genre
-    {
-        Action,
-        Adventure,
-        Racing,
-        Fantasy,
-        Choices,
-        Platformer,
-        Puzzle,
-        Cards,
-        Strategy,
-        Sports
-    }
-
     public class Game
     {
         #region Properties

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,19 +12,21 @@ namespace ComputerGamesShop.Models
     {
         #region Properties
 
-        public Order()
-        {
-            this.Games = new List<Game>();
-        }
+        [Key]
         public int OrderID { get; set; }
 
+        [ForeignKey("Customer")]
         [Required(ErrorMessage = "Required field")]
         public int CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }
 
+        [ForeignKey("Store")]
         [Required(ErrorMessage = "Required field")]
-        public int BranchID { get; set; }
+        public int StoreID { get; set; }
+        public virtual Store Store { get; set; }
 
         [Display(Name = "Order Date")]
+        [DisplayFormat(DataFormatString = "{0:G}", ApplyFormatInEditMode = true)]
         public DateTime OrderDate { get; set; }
 
         [Display(Name = "Total")]
@@ -32,9 +35,9 @@ namespace ComputerGamesShop.Models
             get
             {
                 var total = 0;
-                foreach (var p in this.Games)
+                foreach (var game in this.Games)
                 {
-                    total += (int)p.Price;
+                    total += (int)game.Price;
                 }
                 return total;
             }
@@ -46,11 +49,16 @@ namespace ComputerGamesShop.Models
 
         public virtual ICollection<Game> Games { get; set; }
 
-        public virtual Customer Customer { get; set; }
-
-        public virtual Store Store { get; set; }
-
         #endregion
+
+        #region Ctor
+
+        public Order()
+        {
+            this.Games = new List<Game>();
+        }
+
+        # endregion
     }
 
     public class OrderYearsViewModel

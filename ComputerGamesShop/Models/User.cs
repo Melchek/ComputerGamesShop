@@ -7,6 +7,8 @@ namespace ComputerGamesShop.Models
     {
         #region Properties
 
+        [Key]
+        [Required]
         public int UserID { get; set; }
 
         [Display(Name = "First name")]
@@ -28,7 +30,7 @@ namespace ComputerGamesShop.Models
         [Display(Name = "Birth date")]
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Required field")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
 
         [Display(Name = "Gender")]
@@ -36,12 +38,12 @@ namespace ComputerGamesShop.Models
 
         [Display(Name = "Email address")]
         [Required(ErrorMessage = "Required field")]
-        [EmailAddress(ErrorMessage = "you have entered an invalid email address")]
+        [EmailAddress(ErrorMessage = "You have entered an invalid email address")]
         public string Email { get; set; }
 
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Required field")]
-        [StringLength(100, ErrorMessage = "Password mast contain at list 6 characters", MinimumLength = 6)]
+        [StringLength(8, ErrorMessage = "Password must be between 6 and 8 characters", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

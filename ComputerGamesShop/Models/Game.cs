@@ -39,6 +39,7 @@ namespace ComputerGamesShop.Models
         [ForeignKey("Publisher")]
         [Display(Name = "Publisher")]
         public int PublisherID { get; set; }
+        public Publisher Publisher { get; set; }
 
         [Display(Name = "isMultiplayer")]
         [Required(ErrorMessage = "Required field")]
@@ -49,19 +50,7 @@ namespace ComputerGamesShop.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
-
-        public Publisher Publisher { get; set; }
-        public ICollection<Customer> Customers { get; set; }
-
-        #endregion
-
-        #region Ctor
-
-        public Game()
-        {
-            this.Customers = new HashSet<Customer>();
-        }
-
+        
         #endregion
     }
 }

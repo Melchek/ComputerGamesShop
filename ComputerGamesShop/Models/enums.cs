@@ -19,6 +19,4 @@
         Strategy,
         Sports
     };
-
-
 }

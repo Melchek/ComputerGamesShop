@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ComputerGamesShop.Models.Store>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.StoreName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StoreCity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StoreStreet)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StoresPhoneNumber)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoreName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoreCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoreStreet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoresPhoneNumber)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StoreID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StoreID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StoreID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

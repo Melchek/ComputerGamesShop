@@ -10,6 +10,7 @@ namespace ComputerGamesShop.Models
     {
         #region Properties
 
+        [Key]
         public int StoreID { get; set; }
 
         [Display(Name = "Store Name")]

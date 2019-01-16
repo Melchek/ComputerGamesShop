@@ -5,13 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ComputerGamesShop.Models
-{
+{    
     public class Publisher
     {
         #region Properties
 
         [Key]
-        [Required]
+        [Required]        
         public int ID { get; set; }
 
         [Required]
@@ -30,7 +30,7 @@ namespace ComputerGamesShop.Models
         [Required]
         [EnumDataType(typeof(Genre))]
         public Genre Specialty { get; set; }
-
+        
         #endregion
 
         #region Navigate Properties

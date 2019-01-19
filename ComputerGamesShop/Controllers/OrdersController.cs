@@ -48,8 +48,8 @@ namespace ComputerGamesShop.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "UserID", "Discriminator");
-            ViewData["StoreID"] = new SelectList(_context.Set<Store>(), "StoreID", "StoreCity");
+            ViewData["CustomerId"] = new SelectList(_context.User, "UserID", "Email");
+            ViewData["StoreID"] = new SelectList(_context.Store, "StoreID", "StoreCity");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace ComputerGamesShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "UserID", "Discriminator", order.CustomerId);
-            ViewData["StoreID"] = new SelectList(_context.Set<Store>(), "StoreID", "StoreCity", order.StoreID);
+            ViewData["CustomerId"] = new SelectList(_context.User, "UserID", "Email", order.CustomerId);
+            ViewData["StoreID"] = new SelectList(_context.Store, "StoreID", "StoreCity", order.StoreID);
             return View(order);
         }
 
@@ -84,8 +84,8 @@ namespace ComputerGamesShop.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "UserID", "Discriminator", order.CustomerId);
-            ViewData["StoreID"] = new SelectList(_context.Set<Store>(), "StoreID", "StoreCity", order.StoreID);
+            ViewData["CustomerId"] = new SelectList(_context.User, "UserID", "Email", order.CustomerId);
+            ViewData["StoreID"] = new SelectList(_context.Store, "StoreID", "StoreCity", order.StoreID);
             return View(order);
         }
 
@@ -121,8 +121,8 @@ namespace ComputerGamesShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "UserID", "Discriminator", order.CustomerId);
-            ViewData["StoreID"] = new SelectList(_context.Set<Store>(), "StoreID", "StoreCity", order.StoreID);
+            ViewData["CustomerId"] = new SelectList(_context.User, "UserID", "Email", order.CustomerId);
+            ViewData["StoreID"] = new SelectList(_context.Store, "StoreID", "StoreCity", order.StoreID);
             return View(order);
         }
 

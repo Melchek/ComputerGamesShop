@@ -18,7 +18,7 @@ namespace ComputerGamesShop.Models
         [ForeignKey("Customer")]
         [Required(ErrorMessage = "Required field")]
         public int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
+        public virtual User Customer { get; set; }
 
         [ForeignKey("Store")]
         [Required(ErrorMessage = "Required field")]

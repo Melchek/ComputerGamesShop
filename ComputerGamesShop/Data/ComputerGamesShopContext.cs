@@ -16,10 +16,6 @@ namespace ComputerGamesShop.Models
 
         public DbSet<ComputerGamesShop.Models.User> User { get; set; }
 
-        public DbSet<ComputerGamesShop.Models.Customer> Customer { get; set; }
-
-        public DbSet<ComputerGamesShop.Models.Manager> Manager { get; set; }
-
         public DbSet<ComputerGamesShop.Models.Game> Game { get; set; }
 
         public DbSet<ComputerGamesShop.Models.Publisher> Publisher { get; set; }

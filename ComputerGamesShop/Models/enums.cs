@@ -2,8 +2,15 @@
 {
     public enum Gender
     {
-        male,
-        female
+        Male,
+        Female,
+        Other
+    };
+
+    public enum Role
+    {
+        Manager,
+        Customer
     };
 
     public enum Genre

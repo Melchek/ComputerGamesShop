@@ -6,14 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 
 namespace ComputerGamesShop.Migrations
 {
     [DbContext(typeof(ComputerGamesShopContext))]
-    [Migration("20181229200840_ComputerGamesShop-V1")]
-    partial class ComputerGamesShopV1
+    [Migration("20190119201610_start")]
+    partial class start
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,8 +101,6 @@ namespace ComputerGamesShop.Migrations
                     b.Property<int>("StoreID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ManagerUserID");
-
                     b.Property<string>("StoreCity")
                         .IsRequired();
 
@@ -117,8 +114,6 @@ namespace ComputerGamesShop.Migrations
 
                     b.HasKey("StoreID");
 
-                    b.HasIndex("ManagerUserID");
-
                     b.ToTable("Store");
                 });
 
@@ -130,9 +125,6 @@ namespace ComputerGamesShop.Migrations
                     b.Property<DateTime>("BirthDate");
 
                     b.Property<string>("City");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
 
                     b.Property<string>("Email")
                         .IsRequired();
@@ -151,33 +143,13 @@ namespace ComputerGamesShop.Migrations
 
                     b.Property<string>("PhoneNumber");
 
+                    b.Property<int>("Role");
+
                     b.Property<string>("Street");
 
                     b.HasKey("UserID");
 
                     b.ToTable("User");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
-                });
-
-            modelBuilder.Entity("ComputerGamesShop.Models.Customer", b =>
-                {
-                    b.HasBaseType("ComputerGamesShop.Models.User");
-
-
-                    b.ToTable("Customer");
-
-                    b.HasDiscriminator().HasValue("Customer");
-                });
-
-            modelBuilder.Entity("ComputerGamesShop.Models.Manager", b =>
-                {
-                    b.HasBaseType("ComputerGamesShop.Models.User");
-
-
-                    b.ToTable("Manager");
-
-                    b.HasDiscriminator().HasValue("Manager");
                 });
 
             modelBuilder.Entity("ComputerGamesShop.Models.Game", b =>
@@ -194,8 +166,8 @@ namespace ComputerGamesShop.Migrations
 
             modelBuilder.Entity("ComputerGamesShop.Models.Order", b =>
                 {
-                    b.HasOne("ComputerGamesShop.Models.Customer", "Customer")
-                        .WithMany("Orders")
+                    b.HasOne("ComputerGamesShop.Models.User", "Customer")
+                        .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -203,13 +175,6 @@ namespace ComputerGamesShop.Migrations
                         .WithMany()
                         .HasForeignKey("StoreID")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ComputerGamesShop.Models.Store", b =>
-                {
-                    b.HasOne("ComputerGamesShop.Models.Manager")
-                        .WithMany("Stores")
-                        .HasForeignKey("ManagerUserID");
                 });
 #pragma warning restore 612, 618
         }

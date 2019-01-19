@@ -57,6 +57,9 @@ namespace ComputerGamesShop.Models
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
+        [Display(Name = "Role")]
+        public Role Role { get; set; }
+
         #endregion
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ComputerGamesShop.Migrations
 {
-    public partial class ComputerGamesShopV1 : Migration
+    public partial class start : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,34 +26,11 @@ namespace ComputerGamesShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    UserID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    BirthDate = table.Column<DateTime>(nullable: false),
-                    City = table.Column<string>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(nullable: false),
-                    FirstName = table.Column<string>(nullable: false),
-                    Gender = table.Column<int>(nullable: false),
-                    LastName = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(maxLength: 8, nullable: false),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    Street = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_User", x => x.UserID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Store",
                 columns: table => new
                 {
                     StoreID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ManagerUserID = table.Column<int>(nullable: true),
                     StoreCity = table.Column<string>(nullable: false),
                     StoreName = table.Column<string>(nullable: false),
                     StoreStreet = table.Column<string>(nullable: false),
@@ -62,12 +39,28 @@ namespace ComputerGamesShop.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Store", x => x.StoreID);
-                    table.ForeignKey(
-                        name: "FK_Store_User_ManagerUserID",
-                        column: x => x.ManagerUserID,
-                        principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    UserID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    BirthDate = table.Column<DateTime>(nullable: false),
+                    City = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: false),
+                    Gender = table.Column<int>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(maxLength: 8, nullable: false),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    Role = table.Column<int>(nullable: false),
+                    Street = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.UserID);
                 });
 
             migrationBuilder.CreateTable(
@@ -149,11 +142,6 @@ namespace ComputerGamesShop.Migrations
                 name: "IX_Order_StoreID",
                 table: "Order",
                 column: "StoreID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Store_ManagerUserID",
-                table: "Store",
-                column: "ManagerUserID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -168,10 +156,10 @@ namespace ComputerGamesShop.Migrations
                 name: "Publisher");
 
             migrationBuilder.DropTable(
-                name: "Store");
+                name: "User");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Store");
         }
     }
 }

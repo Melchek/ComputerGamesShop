@@ -53,7 +53,7 @@ namespace ComputerGamesShop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserID,FirstName,LastName,BirthDate,Gender,Email,Password,City,Street,PhoneNumber")] User user)
+        public async Task<IActionResult> Create([Bind("UserID,FirstName,LastName,BirthDate,Gender,Email,Password,City,Street,PhoneNumber,Role")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ComputerGamesShop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserID,FirstName,LastName,BirthDate,Gender,Email,Password,City,Street,PhoneNumber")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("UserID,FirstName,LastName,BirthDate,Gender,Email,Password,City,Street,PhoneNumber,Role")] User user)
         {
             if (id != user.UserID)
             {

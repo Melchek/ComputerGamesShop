@@ -14,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\games\" />
+    <Content Remove="wwwroot\images\slider-1.jpg" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="wwwroot\images\slider-1.jpg" />
+  </ItemGroup>
 </Project>
